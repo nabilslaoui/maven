@@ -1,0 +1,76 @@
+# maven
+
+Maven basé sur l'image de base java headless.
+
+Peut servir à la fois dans un pipeline Gitlab et en ligne de commande sur poste de devloppement.
+
+## Variables d'environnements
+
+* `PUBLISH_REPOSITORY_BASENAME` : Nom du projet tel qu'il est utilisé dans le nom de son dépot Artifactory. Exemple : //TODO
+* `ARTIFACTORY_USER` : utilisateur Artifactory ayant droit de déployer un artéfact (en général le compte de service du projet). Exemple : ``
+* `ARTIFACTORY_ACCESS_TOKEN`  : Clé d'API Artifactory générée par `ARTIFACTORY_USER`
+
+## Pré-requis
+* Disposer de dépôts Maven Artifactory release et snapshot pour son projet
+* Disposer d'un compte de service Artifactory avec clé d'API pour pouvoir déployer
+
+## Exemple de pom.xml
+
+Note: le pom.xml ne doit contenir aucune valeur plateforme-dependante. Les URL, secrets... seront injectées par Maven depuis les variables d'environnement qui ont été passées (voir plus haut)
+
+Votre POM sevra impérativement contenir le `distributionManagement` suivant :
+
+```
+<project>
+...
+        <distributionManagement>
+                <repository>
+                        <id>release</id>
+                        <name>artifactory-releases</name>
+                        <url>${url.repository-mvn-mae-dev}</url>
+                </repository>
+                <snapshotRepository>
+                        <id>snapshots</id>
+                        <name>artifactory-snapshots</name>
+                        <url>${url.artifactory-snapshots}</url>
+                </snapshotRepository>
+        </distributionManagement>
+
+</project>
+
+```
+
+## Exemple d'utilisation dans un pipeline Gitlab
+
+```
+mon_job:
+  image: 
+    name: registry.gitlab.com/d837/maven:latest
+    entrypoint: [""]
+  stage: setup
+  artifacts:
+    paths:
+      - pom.xml
+    expire_in: 2 hours
+    
+  script:
+    - mvn -s /var/maven/.m2/settings.xml -Dmaven.repo.local=$CI_PROJECT_DIR/.m2 clean $MAVEN_CLI_OPTS clean package
+```
+
+
+## Exemple d'utilisation en ligne de commande sur poste de développement
+
+```
+docker run --rm -it -u `id -u`:`id -g`  -v $(pwd):/sources -v maven_repo:/maven-repo/.m2 \
+    registry.gitlab.com/d837/maven:latest \
+    mvn -Duser.home=/var/maven -Dmaven.repo.local=/maven-repo/.m2 clean package
+```
+
+Notes:
+* L'image utilise l'utilisateur et le groupe courant, ce qui permet d'abtenir des artefacts dans `target` 
+lui appartenant et de ne pas le polluer avec des fichiers appartenant à `root`.
+* Le `-Duser.home=/var/maven` [est obligatoire](https://github.com/docker-library/docs/tree/master/maven#running-as-non-root)
+* Le dépot local est mis dans un volume nommé `maven-repo`, ce qui permet de cacher les resources maven entre deux builds
+* Il est conseillé de faire un alias Bash vers cette commande (dans `~/.bashrc` par exemple)
+* Sur poste de dev, il est préférable d'utiliser le tag `latest` pour que tous les développeurs récupérent la dernière version de l'image. 
+En CI, il vaut mieux utiliser une version préside (pinned version) pour la reproductibilité du build.
