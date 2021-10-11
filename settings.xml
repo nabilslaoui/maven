@@ -17,6 +17,10 @@
   </servers>
   <profiles>
     <profile>
+      <properties>
+        <url.artifactory-release>https://nabilslaoui.jfrog.io/artifactory/default-libs-release</url.artifactory-release>
+        <url.artifactory-snapshots>https://nabilslaoui.jfrog.io/artifactory/default-libs-snapshot</url.artifactory-snapshots>
+    </properties>      
       <repositories>
         <repository>
           <snapshots>
