@@ -3,13 +3,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <servers>
     <server>
-      <username>nabil.slaoui</username>
-      <password>AP2VfjHhCzPoP7TYP3x5UpGuGUt</password>
+      <username>${env.ARTIFACTORY_USER}</username>
+      <password>${env.ARTIFACTORY_ACCESS_TOKEN}</password>
       <id>central</id>
     </server>
     <server>
-      <username>nabil.slaoui</username>
-      <password>AP2VfjHhCzPoP7TYP3x5UpGuGUt</password>
+      <username>${env.ARTIFACTORY_USER}</username>
+      <password>${env.ARTIFACTORY_ACCESS_TOKEN}</password>
       <id>snapshots</id>
     </server>
   </servers>
