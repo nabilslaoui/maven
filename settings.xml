@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 http://maven.apache.org/xsd/settings-1.2.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.2.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 http://maven.apache.org/xsd/settings-1.2.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <servers>
     <server>
       <username>${env.ARTIFACTORY_USER}</username>
@@ -20,7 +19,7 @@
       <properties>
         <url.artifactory-release>https://nabilslaoui.jfrog.io/artifactory/default-libs-release</url.artifactory-release>
         <url.artifactory-snapshots>https://nabilslaoui.jfrog.io/artifactory/default-libs-snapshot</url.artifactory-snapshots>
-    </properties>      
+      </properties>
       <repositories>
         <repository>
           <snapshots>
@@ -35,6 +34,10 @@
           <id>snapshots</id>
           <name>default-libs-snapshot</name>
           <url>https://nabilslaoui.jfrog.io/artifactory/default-libs-snapshot</url>
+        </repository>
+        <repository>
+          <id>jaspersoft-third-party</id>
+          <url>http://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
         </repository>
       </repositories>
       <pluginRepositories>
