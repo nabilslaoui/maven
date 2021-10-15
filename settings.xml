@@ -36,6 +36,12 @@
           <url>https://nabilslaoui.jfrog.io/artifactory/default-libs-snapshot</url>
         </repository>
         <repository>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
           <id>jaspersoft-third-party</id>
           <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
         </repository>
@@ -55,6 +61,13 @@
           <name>default-libs-snapshot</name>
           <url>https://nabilslaoui.jfrog.io/artifactory/default-libs-snapshot</url>
         </pluginRepository>
+        <pluginRepository>
+          <snapshots />
+          <releases/>
+          <id>jaspersoft-third-party</id>
+          <name>default-jaspersoft-third-party</name>
+          <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
+        </pluginRepository>        
       </pluginRepositories>
       <id>artifactory</id>
     </profile>
