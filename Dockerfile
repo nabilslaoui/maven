@@ -38,7 +38,7 @@ ENV PATH=/usr/java/openjdk-11/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/
 	MAVEN_HOME=/usr/share/maven \
 	MAVEN_CONFIG=$MAVEN_CONFIG
 
-COPY --chown=$NOM_USER:$NOM_USER settings.xml $MAVEN_CONFIG
+COPY --chown=$NOM_USER:$NOM_USER settings.xml  $MAVEN_CONFIG
 
 WORKDIR /sources
 

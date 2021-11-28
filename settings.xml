@@ -2,23 +2,29 @@
 <settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 http://maven.apache.org/xsd/settings-1.2.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <servers>
     <server>
-      <username>${env.ARTIFACTORY_USER}</username>
+      <username>${env.NEXUS_USER}</username>
       <!-- API key artifactory créée par le compte de service -->
-      <password>${env.ARTIFACTORY_ACCESS_TOKEN}</password>
+      <password>${env.NEXUS_PASSWORD}</password>
       <id>central</id>
     </server>
     <server>
-      <username>${env.ARTIFACTORY_USER}</username>
+      <username>${env.NEXUS_USER}</username>
       <!-- API key artifactory créée par le compte de service -->
-      <password>${env.ARTIFACTORY_ACCESS_TOKEN}</password>
+      <password>${env.NEXUS_PASSWORD}</password>
       <id>snapshots</id>
     </server>
+    <server>
+      <username>${env.NEXUS_USER}</username>
+      <!-- API key artifactory créée par le compte de service -->
+      <password>${env.NEXUS_PASSWORD}</password>
+      <id>releases</id> 
+    </server>   
   </servers>
   <profiles>
     <profile>
       <properties>
-        <url.artifactory-release>https://nabilslaoui.jfrog.io/artifactory/default-libs-release</url.artifactory-release>
-        <url.artifactory-snapshots>https://nabilslaoui.jfrog.io/artifactory/default-libs-snapshot</url.artifactory-snapshots>
+        <url.artifactory-release>http://146.148.127.179/frontal/nexus/repository/maven-releases/</url.artifactory-release>
+        <url.artifactory-snapshots>http://146.148.127.179/frontal/nexus/repository/maven-snapshots/</url.artifactory-snapshots>
       </properties>
       <repositories>
         <repository>
@@ -27,13 +33,19 @@
           </snapshots>
           <id>central</id>
           <name>default-libs-release</name>
-          <url>https://nabilslaoui.jfrog.io/artifactory/default-libs-release</url>
+          <url>http://146.148.127.179/frontal/nexus/repository/maven-central/</url>
         </repository>
+        <repository>
+          <snapshots />
+          <id>releases</id>
+          <name>default-libs-releases</name>
+          <url>http://146.148.127.179/frontal/nexus/repository/maven-releases/</url>
+        </repository>        
         <repository>
           <snapshots />
           <id>snapshots</id>
           <name>default-libs-snapshot</name>
-          <url>https://nabilslaoui.jfrog.io/artifactory/default-libs-snapshot</url>
+          <url>http://146.148.127.179/frontal/nexus/repository/maven-snapshots/</url>
         </repository>
         <repository>
           <snapshots>
@@ -53,13 +65,13 @@
           </snapshots>
           <id>central</id>
           <name>default-libs-release</name>
-          <url>https://nabilslaoui.jfrog.io/artifactory/default-libs-release</url>
+          <url>http://146.148.127.179/frontal/nexus/repository/maven-central/</url>
         </pluginRepository>
         <pluginRepository>
           <snapshots />
           <id>snapshots</id>
           <name>default-libs-snapshot</name>
-          <url>https://nabilslaoui.jfrog.io/artifactory/default-libs-snapshot</url>
+          <url>http://146.148.127.179/frontal/nexus/repository/maven-central/</url>
         </pluginRepository>
         <pluginRepository>
           <snapshots />
