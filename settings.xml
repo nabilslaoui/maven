@@ -1,90 +1,80 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 http://maven.apache.org/xsd/settings-1.2.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8" ?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <!-- Paramètres plateforme-dépendants des dépots vers lesquels on déploie (utilisé dans le DistributionManagement des pom)-->
   <servers>
     <server>
+      <id>release</id>
+      <!-- Login du compte de service <monprojet>_ci (ex: espace42_ci) -->
       <username>${env.NEXUS_USER}</username>
       <!-- API key artifactory créée par le compte de service -->
       <password>${env.NEXUS_PASSWORD}</password>
-      <id>central</id>
     </server>
     <server>
-      <username>${env.NEXUS_USER}</username>
-      <!-- API key artifactory créée par le compte de service -->
-      <password>${env.NEXUS_PASSWORD}</password>
       <id>snapshots</id>
-    </server>
-    <server>
+      <!-- Login du compte de service <monprojet>_ci (ex: espace42_ci) -->
       <username>${env.NEXUS_USER}</username>
       <!-- API key artifactory créée par le compte de service -->
       <password>${env.NEXUS_PASSWORD}</password>
-      <id>releases</id> 
-    </server>   
+    </server>
   </servers>
+
+  <!-- Modifie à la volée l'URL des artefacts du dépot central Maven vers le dépot interne MAE. Utile pour les dépendances externes -->
+  <mirrors>
+    <mirror>
+      <id>repository-mvn-proxy</id>
+      <name>Maven Repository Proxy</name>
+      <url>http://146.148.127.179/frontal/nexus/repository/maven-central/</url>
+      <mirrorOf>*</mirrorOf>
+    </mirror>
+  </mirrors>
+
   <profiles>
     <profile>
       <properties>
         <url.artifactory-release>http://146.148.127.179/frontal/nexus/repository/maven-releases/</url.artifactory-release>
         <url.artifactory-snapshots>http://146.148.127.179/frontal/nexus/repository/maven-snapshots/</url.artifactory-snapshots>
       </properties>
+      <!-- Permet d'accéder aux dépendances internes du projet -->
       <repositories>
         <repository>
           <snapshots>
             <enabled>false</enabled>
           </snapshots>
-          <id>central</id>
-          <name>default-libs-release</name>
-          <url>http://146.148.127.179/frontal/nexus/repository/maven-central/</url>
+          <id>release</id>
+          <name>repository-mvn-nabilslaoui</name>
+          <url>${url.artifactory-release}</url>
         </repository>
-        <repository>
-          <snapshots />
-          <id>releases</id>
-          <name>default-libs-releases</name>
-          <url>http://146.148.127.179/frontal/nexus/repository/maven-releases/</url>
-        </repository>        
         <repository>
           <snapshots />
           <id>snapshots</id>
-          <name>default-libs-snapshot</name>
-          <url>http://146.148.127.179/frontal/nexus/repository/maven-snapshots/</url>
-        </repository>
-        <repository>
-          <snapshots>
-            <enabled>true</enabled>
-          </snapshots>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <id>jaspersoft-third-party</id>
-          <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
+          <name>repository-mvn-nabilslaoui</name>
+          <url>${url.artifactory-snapshots}</url>
         </repository>
       </repositories>
+
+      <!--Accès aux plugins Maven -->
       <pluginRepositories>
         <pluginRepository>
           <snapshots>
             <enabled>false</enabled>
           </snapshots>
-          <id>central</id>
-          <name>default-libs-release</name>
+          <id>release</id>
+          <name>repository-mvn-mae</name>
           <url>http://146.148.127.179/frontal/nexus/repository/maven-central/</url>
         </pluginRepository>
         <pluginRepository>
           <snapshots />
           <id>snapshots</id>
-          <name>default-libs-snapshot</name>
+          <name>repository-mvn-mae</name>
           <url>http://146.148.127.179/frontal/nexus/repository/maven-central/</url>
         </pluginRepository>
-        <pluginRepository>
-          <snapshots />
-          <releases/>
-          <id>jaspersoft-third-party</id>
-          <name>default-jaspersoft-third-party</name>
-          <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
-        </pluginRepository>        
       </pluginRepositories>
-      <id>artifactory</id>
+      <id>default</id>
     </profile>
   </profiles>
   <activeProfiles>
-    <activeProfile>artifactory</activeProfile>
+    <activeProfile>default</activeProfile>
   </activeProfiles>
 </settings>
+
