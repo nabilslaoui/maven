@@ -4,6 +4,13 @@
   <!-- Paramètres plateforme-dépendants des dépots vers lesquels on déploie (utilisé dans le DistributionManagement des pom)-->
   <servers>
     <server>
+      <id>central</id>
+      <!-- Login du compte de service <monprojet>_ci (ex: espace42_ci) -->
+      <username>${env.NEXUS_USER}</username>
+      <!-- API key artifactory créée par le compte de service -->
+      <password>${env.NEXUS_PASSWORD}</password>
+    </server>
+    <server>
       <id>release</id>
       <!-- Login du compte de service <monprojet>_ci (ex: espace42_ci) -->
       <username>${env.NEXUS_USER}</username>
@@ -20,23 +27,32 @@
   </servers>
 
   <!-- Modifie à la volée l'URL des artefacts du dépot central Maven vers le dépot interne MAE. Utile pour les dépendances externes -->
-  <mirrors>
-    <mirror>
-      <id>repository-mvn-proxy</id>
-      <name>Maven Repository Proxy</name>
-      <url>http://146.148.127.179/frontal/nexus/repository/maven-central/</url>
-      <mirrorOf>*</mirrorOf>
-    </mirror>
-  </mirrors>
+<!--  <mirrors>-->
+<!--    <mirror>-->
+<!--      <id>repository-mvn-proxy</id>-->
+<!--      <name>Maven Repository Proxy</name>-->
+<!--      <url>http://146.148.127.179/frontal/nexus/repository/maven-central/</url>-->
+<!--      <mirrorOf>*</mirrorOf>-->
+<!--    </mirror>-->
+<!--  </mirrors>-->
 
   <profiles>
     <profile>
       <properties>
+        <url.artifactory-central>http://146.148.127.179/frontal/nexus/repository/maven-central/</url.artifactory-central>
         <url.artifactory-release>http://146.148.127.179/frontal/nexus/repository/maven-releases/</url.artifactory-release>
         <url.artifactory-snapshots>http://146.148.127.179/frontal/nexus/repository/maven-snapshots/</url.artifactory-snapshots>
       </properties>
       <!-- Permet d'accéder aux dépendances internes du projet -->
       <repositories>
+        <repository>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+          <id>central</id>
+          <name>repository-mvn-nabilslaoui</name>
+          <url>${url.artifactory-central}</url>
+        </repository>
         <repository>
           <snapshots>
             <enabled>false</enabled>
@@ -61,13 +77,13 @@
           </snapshots>
           <id>release</id>
           <name>repository-mvn-mae</name>
-          <url>http://146.148.127.179/frontal/nexus/repository/maven-central/</url>
+          <url>${url.artifactory-central}</url>
         </pluginRepository>
         <pluginRepository>
           <snapshots />
           <id>snapshots</id>
           <name>repository-mvn-mae</name>
-          <url>http://146.148.127.179/frontal/nexus/repository/maven-central/</url>
+          <url>${url.artifactory-central}</url>
         </pluginRepository>
       </pluginRepositories>
       <id>default</id>
