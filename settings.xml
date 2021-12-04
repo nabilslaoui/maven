@@ -57,14 +57,14 @@
       </configuration>
     </server>
   </servers>
-  <mirrors>
+  <!-- <mirrors>
     <mirror>
         <id>gitlab-maven-bom</id>
         <name>Maven Repository Proxy</name>
-        <url>${env.CI_API_V4_URL}/projects/30354788/packages/maven</url> <!-- -->
+        <url>${env.CI_API_V4_URL}/projects/30354788/packages/maven</url>
         <mirrorOf>*</mirrorOf>
     </mirror>
-</mirrors>  
+  </mirrors>   -->
   <profiles>
     <profile>
       <repositories>
