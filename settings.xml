@@ -58,15 +58,15 @@
     </server>
     <server>
       <id>dependency-proxy</id>
-      <username>nabilslaoui</username>
-      <password>${env.GITLAB_ACESS_TOKEN}</password>
+      <username>${env.NEXUS_USER}</username>
+      <password>${env.NEXUS_PASSWORD}</password>
     </server>                         
   </servers>
   <mirrors>
     <mirror>
         <id>dependency-proxy</id>
         <name>Maven Repository Proxy</name>
-        <url>gitlab.com/dev1407/dependency_proxy/packages</url>
+        <url>http://146.148.127.179/frontal/nexus/repository/maven-central/</url>
         <mirrorOf>*</mirrorOf>
     </mirror>
 </mirrors>  
@@ -75,7 +75,7 @@
       <repositories>
         <repository>
           <id>dependency-proxy</id>
-          <url>gitlab.com/dev1407/dependency_proxy/containers</url>
+          <url>http://146.148.127.179/frontal/nexus/repository/maven-central/</url>
         </repository>
         <repository>
           <id>gitlab-maven-bom</id>
