@@ -55,11 +55,28 @@
           </property>
         </httpHeaders>
       </configuration>
-    </server>                        
+    </server>
+    <server>
+      <id>dependency-proxy</id>
+      <username>nabilslaoui</username>
+      <password>${env.GITLAB_ACESS_TOKEN}</password>
+    </server>                         
   </servers>
+  <mirrors>
+    <mirror>
+        <id>dependency-proxy</id>
+        <name>Maven Repository Proxy</name>
+        <url>gitlab.com/dev1407/dependency_proxy/containers</url>
+        <mirrorOf>*</mirrorOf>
+    </mirror>
+</mirrors>  
   <profiles>
     <profile>
       <repositories>
+        <repository>
+          <id>dependency-proxy</id>
+          <url>gitlab.com/dev1407/dependency_proxy/containers</url>
+        </repository>
         <repository>
           <id>gitlab-maven-bom</id>
           <url>${env.CI_API_V4_URL}/projects/30354788/packages/maven</url> <!-- bom -->
