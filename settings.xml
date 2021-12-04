@@ -56,27 +56,18 @@
         </httpHeaders>
       </configuration>
     </server>
-    <server>
-      <id>dependency-proxy</id>
-      <username>${env.NEXUS_USER}</username>
-      <password>${env.NEXUS_PASSWORD}</password>
-    </server>                         
   </servers>
   <mirrors>
     <mirror>
-        <id>dependency-proxy</id>
+        <id>gitlab-maven-bom</id>
         <name>Maven Repository Proxy</name>
-        <url>http://146.148.127.179/frontal/nexus/repository/maven-central/</url>
+        <url>${env.CI_API_V4_URL}/projects/30354788/packages/maven</url>
         <mirrorOf>*</mirrorOf>
     </mirror>
 </mirrors>  
   <profiles>
     <profile>
       <repositories>
-        <repository>
-          <id>dependency-proxy</id>
-          <url>http://146.148.127.179/frontal/nexus/repository/maven-central/</url>
-        </repository>
         <repository>
           <id>gitlab-maven-bom</id>
           <url>${env.CI_API_V4_URL}/projects/30354788/packages/maven</url> <!-- bom -->
