@@ -66,7 +66,7 @@
     <mirror>
         <id>dependency-proxy</id>
         <name>Maven Repository Proxy</name>
-        <url>gitlab.com/dev1407/dependency_proxy/containers</url>
+        <url>gitlab.com/dev1407/dependency_proxy/packages</url>
         <mirrorOf>*</mirrorOf>
     </mirror>
 </mirrors>  
