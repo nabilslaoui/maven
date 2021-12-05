@@ -2,51 +2,7 @@
 <settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 http://maven.apache.org/xsd/settings-1.2.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <servers>
     <server>
-      <id>gitlab-maven-bom</id>
-      <configuration>
-        <httpHeaders>
-          <property>
-            <name>Job-Token</name>
-            <value>${env.CI_JOB_TOKEN}</value>
-          </property>
-        </httpHeaders>
-      </configuration>
-    </server>
-    <server>
-      <id>gitlab-maven-parent</id>
-      <configuration>
-        <httpHeaders>
-          <property>
-            <name>Job-Token</name>
-            <value>${env.CI_JOB_TOKEN}</value>
-          </property>
-        </httpHeaders>
-      </configuration>
-    </server>
-    <server>
-      <id>gitlab-maven-commun</id>
-      <configuration>
-        <httpHeaders>
-          <property>
-            <name>Job-Token</name>
-            <value>${env.CI_JOB_TOKEN}</value>
-          </property>
-        </httpHeaders>
-      </configuration>
-    </server>
-    <server>
-      <id>gitlab-maven-commun-api</id>
-      <configuration>
-        <httpHeaders>
-          <property>
-            <name>Job-Token</name>
-            <value>${env.CI_JOB_TOKEN}</value>
-          </property>
-        </httpHeaders>
-      </configuration>
-    </server>
-    <server>
-      <id>gitlab-maven-commun-batch</id>
+      <id>gitlab-maven</id>
       <configuration>
         <httpHeaders>
           <property>
@@ -61,24 +17,8 @@
     <profile>
       <repositories>
         <repository>
-          <id>gitlab-maven-bom</id>
-          <url>${env.CI_API_V4_URL}/projects/30354788/packages/maven</url> <!-- bom -->
-        </repository>
-        <repository>
-          <id>gitlab-maven-parent</id>
-          <url>${env.CI_API_V4_URL}/projects/30365987/packages/maven</url> <!-- parent -->
-        </repository>
-        <repository>
-          <id>gitlab-maven-commun</id>
-          <url>${env.CI_API_V4_URL}/projects/30365989/packages/maven</url> <!-- commun -->
-        </repository>
-        <repository>
-          <id>gitlab-maven-commun-api</id>
-          <url>${env.CI_API_V4_URL}/projects/30365995/packages/maven</url> <!-- commun-api-->
-        </repository>
-        <repository>
-          <id>gitlab-maven-commun-batch</id>
-          <url>${env.CI_API_V4_URL}/projects/30366001/packages/maven</url> <!-- commun-batch -->
+          <id>gitlab-maven</id>
+          <url>${env.CI_API_V4_URL}/projects/${env.CI_PROJECT_ID}/packages/maven</url> <!-- commun-batch -->
         </repository>
         <repository>
           <snapshots>
