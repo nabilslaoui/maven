@@ -56,30 +56,75 @@
         </httpHeaders>
       </configuration>
     </server>
+    <server>
+      <id>gitlab-maven-logging-api</id>
+      <configuration>
+        <httpHeaders>
+          <property>
+            <name>Job-Token</name>
+            <value>${env.CI_JOB_TOKEN}</value>
+          </property>
+        </httpHeaders>
+      </configuration>
+    </server>   
+    <server>
+      <id>gitlab-maven-graphql-api</id>
+      <configuration>
+        <httpHeaders>
+          <property>
+            <name>Job-Token</name>
+            <value>${env.CI_JOB_TOKEN}</value>
+          </property>
+        </httpHeaders>
+      </configuration>
+    </server> 
+    <server>
+      <id>gitlab-maven-jasperreports-api</id>
+      <configuration>
+        <httpHeaders>
+          <property>
+            <name>Job-Token</name>
+            <value>${env.CI_JOB_TOKEN}</value>
+          </property>
+        </httpHeaders>
+      </configuration>
+    </server>                 
   </servers>
   <profiles>
     <profile>
       <repositories>
         <repository>
           <id>gitlab-maven-bom</id>
-          <url>${env.CI_API_V4_URL}/projects/30354788/packages/maven</url> <!-- bom -->
+          <url>${env.CI_API_V4_URL}/projects/30354788/packages/maven</url>
         </repository>
         <repository>
           <id>gitlab-maven-parent</id>
-          <url>${env.CI_API_V4_URL}/projects/30365987/packages/maven</url> <!-- parent -->
+          <url>${env.CI_API_V4_URL}/projects/30365987/packages/maven</url>
         </repository>
         <repository>
           <id>gitlab-maven-commun</id>
-          <url>${env.CI_API_V4_URL}/projects/30365989/packages/maven</url> <!-- commun -->
+          <url>${env.CI_API_V4_URL}/projects/30365989/packages/maven</url>
         </repository>
         <repository>
           <id>gitlab-maven-commun-api</id>
-          <url>${env.CI_API_V4_URL}/projects/30365995/packages/maven</url> <!-- commun-api-->
+          <url>${env.CI_API_V4_URL}/projects/30365995/packages/maven</url>
         </repository>
         <repository>
           <id>gitlab-maven-commun-batch</id>
-          <url>${env.CI_API_V4_URL}/projects/30366001/packages/maven</url> <!-- commun-batch -->
+          <url>${env.CI_API_V4_URL}/projects/30366001/packages/maven</url>
         </repository>
+        <repository>
+          <id>gitlab-maven-logging-api</id>
+          <url>${env.CI_API_V4_URL}/projects/30512206/packages/maven</url>
+        </repository>
+        <repository>
+          <id>gitlab-maven-graphql-api</id>
+          <url>${env.CI_API_V4_URL}/projects/30920773/packages/maven</url>
+        </repository>
+        <repository>
+          <id>gitlab-maven-jasperreports-api</id>
+          <url>${env.CI_API_V4_URL}/projects/30366011/packages/maven</url>
+        </repository>                        
         <repository>
           <snapshots>
             <enabled>true</enabled>
