@@ -79,8 +79,27 @@
         <repository>
           <id>gitlab-maven-commun-batch</id>
           <url>${env.CI_API_V4_URL}/projects/30366001/packages/maven</url> <!-- commun-batch -->
-        </repository>                                            
+        </repository>
+        <repository>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <id>jaspersoft-third-party</id>
+          <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
+        </repository>                                                    
       </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <snapshots />
+          <releases/>
+          <id>jaspersoft-third-party</id>
+          <name>default-jaspersoft-third-party</name>
+          <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
+        </pluginRepository>        
+      </pluginRepositories>
       <id>artifactory</id>
     </profile>
   </profiles>
