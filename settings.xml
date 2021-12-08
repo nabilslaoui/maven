@@ -88,8 +88,23 @@
           </property>
         </httpHeaders>
       </configuration>
-    </server>                 
+    </server>
+    <server>
+      <id>libs-releases</id>
+      <username>${env.ARTIFACTORY_USER}</username>
+      <!-- API key artifactory créée par le compte de service -->
+      <password>${env.ARTIFACTORY_ACCESS_TOKEN}</password>
+    </server>
   </servers>
+  <!-- Modifie à la volée l'URL des artefacts du dépot central Maven vers le dépot interne JFROG. Utile pour les dépendances externes -->
+  <mirrors>
+    <mirror>
+        <id>repository-mvn-proxy</id>
+        <name>Maven Repository Proxy</name>
+        <url>https://nabilslaoui.jfrog.io/artifactory/default-libs-release</url>
+        <mirrorOf>*</mirrorOf>
+    </mirror>
+  </mirrors>  
   <profiles>
     <profile>
       <id>gitlab-repository</id>
@@ -125,8 +140,26 @@
         <repository>
           <id>gitlab-maven-jasperreports-api</id>
           <url>${env.CI_API_V4_URL}/projects/30366011/packages/maven</url>
-        </repository>                                                
+        </repository>
+        <repository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>libs-releases</id>
+          <name>libs-releases</name>
+          <url>https://nabilslaoui.jfrog.io/artifactory/default-libs-release</url>
+        </repository>                                                     
       </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>libs-releases</id>
+          <name>libs-releases</name>
+          <url>https://nabilslaoui.jfrog.io/artifactory/default-libs-release</url>
+        </pluginRepository>
+      </pluginRepositories>      
     </profile>
   </profiles>
   <activeProfiles>
