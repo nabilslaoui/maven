@@ -102,7 +102,7 @@
         <id>repository-mvn-proxy</id>
         <name>Maven Repository Proxy</name>
         <url>https://nabilslaoui.jfrog.io/artifactory/default-libs-release</url>
-        <mirrorOf>*</mirrorOf>
+        <mirrorOf>central</mirrorOf>
     </mirror>
   </mirrors>  
   <profiles>
