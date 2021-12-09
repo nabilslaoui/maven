@@ -90,7 +90,7 @@
       </configuration>
     </server>
     <server>
-      <id>libs-releases</id>
+      <id>repository-mvn-proxy</id>
       <username>${env.ARTIFACTORY_USER}</username>
       <!-- API key artifactory créée par le compte de service -->
       <password>${env.ARTIFACTORY_ACCESS_TOKEN}</password>
@@ -145,8 +145,8 @@
           <snapshots>
             <enabled>false</enabled>
           </snapshots>
-          <id>libs-releases</id>
-          <name>libs-releases</name>
+          <id>repository-mvn-proxy</id>
+          <name>repository-mvn-proxy</name>
           <url>https://nabilslaoui.jfrog.io/artifactory/default-libs-release</url>
         </repository>                                                     
       </repositories>
@@ -155,8 +155,8 @@
           <snapshots>
             <enabled>false</enabled>
           </snapshots>
-          <id>libs-releases</id>
-          <name>libs-releases</name>
+          <id>repository-mvn-proxy</id>
+          <name>repository-mvn-proxy</name>
           <url>https://nabilslaoui.jfrog.io/artifactory/default-libs-release</url>
         </pluginRepository>
       </pluginRepositories>      
