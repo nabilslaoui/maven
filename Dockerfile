@@ -40,7 +40,9 @@ ENV PATH=/usr/java/openjdk-11/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/
 
 COPY --chown=$NOM_USER:$NOM_USER settings.xml  $MAVEN_CONFIG
 
-RUN cd  /usr/java/openjdk-11/bin && \
+COPY traefik-default-cert.pem /tmp/traefik-default-cert.pem
+
+RUN cd  /usr/lib/jvm/java-11-openjdk-amd64/bin && \
    keytool -noprompt -import -alias certNabilSLAOUI -file /tmp/traefik-default-cert.pem -keystore ../lib/security/cacerts --storepass changeit
 
 WORKDIR /sources
