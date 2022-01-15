@@ -1,4 +1,4 @@
-FROM registry.gitlab.com/d837/java-headless:master
+FROM registry.gitlab.com/d837/java-headless/java-headless:master
 
 LABEL org.opencontainers.image.description="Image Maven"
 
