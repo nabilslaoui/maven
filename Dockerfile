@@ -32,6 +32,12 @@ RUN mkdir $SOURCES_DIR \
 RUN git config --system user.email "nabil.slaoui@outlook.fr" \
     && git config --system user.name "nabilslaoui"
 
+COPY traefik-default-cert.pem /tmp/traefik-default-cert.pem
+
+RUN cd  /usr/lib/jvm/java-11-openjdk-amd64/bin && \
+   keytool -noprompt -import -alias certKubernetes -file /tmp/traefik-default-cert.pem -keystore ../lib/security/cacerts --storepass changeit
+
+
 USER $NOM_USER
 
 ENV PATH=/usr/java/openjdk-11/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/apache-maven-$VERSION_MAVEN/bin \
@@ -40,10 +46,6 @@ ENV PATH=/usr/java/openjdk-11/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/
 
 COPY --chown=$NOM_USER:$NOM_USER settings.xml  $MAVEN_CONFIG
 
-COPY traefik-default-cert.pem /tmp/traefik-default-cert.pem
-
-RUN cd  /usr/lib/jvm/java-11-openjdk-amd64/bin && \
-   keytool -noprompt -import -alias certKubernetes -file /tmp/traefik-default-cert.pem -keystore ../lib/security/cacerts --storepass changeit
 
 WORKDIR /sources
 
