@@ -40,6 +40,9 @@ ENV PATH=/usr/java/openjdk-11/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/
 
 COPY --chown=$NOM_USER:$NOM_USER settings.xml  $MAVEN_CONFIG
 
+RUN cd  /usr/java/openjdk-11/bin && \
+   keytool -noprompt -import -alias certNabilSLAOUI -file /tmp/traefik-default-cert.pem -keystore ../lib/security/cacerts --storepass changeit
+
 WORKDIR /sources
 
 # Comme l'image officielle Dockerhub, on n'utilise pas d'entrypoint ni de CMD, on devra donc
