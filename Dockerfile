@@ -13,7 +13,7 @@ USER root
 # Installation des utilitaires
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get -y --no-install-recommends install \
-  curl unzip jq xmlstarlet git openjdk-11-jdk maven \
+  curl unzip jq xmlstarlet git maven \
   # Cleanup apt
   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -34,7 +34,7 @@ RUN git config --system user.email "nabil.slaoui@outlook.fr" \
 
 COPY kubernetes.pem /tmp/kubernetes.pem
 
-RUN cd  /usr/java/openjdk-11/bin && \
+RUN cd /usr/lib/jvm/java-11-openjdk-amd64 && \
    keytool -noprompt -import -alias certKubernetes -file /tmp/kubernetes.pem -keystore ../lib/security/cacerts --storepass changeit
 
 RUN chown -R $NOM_USER:$NOM_USER /usr/lib/jvm/java-11-openjdk-amd64
