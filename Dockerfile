@@ -34,7 +34,7 @@ RUN git config --system user.email "nabil.slaoui@outlook.fr" \
 
 COPY kubernetes.pem /tmp/kubernetes.pem
 
-RUN cd  /usr/lib/jvm/java-11-openjdk-amd64/bin && \
+RUN cd  /usr/java/openjdk-11/bin && \
    keytool -noprompt -import -alias certKubernetes -file /tmp/kubernetes.pem -keystore ../lib/security/cacerts --storepass changeit
 
 RUN chown -R $NOM_USER:$NOM_USER /usr/lib/jvm/java-11-openjdk-amd64
