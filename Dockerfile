@@ -37,6 +37,7 @@ COPY kubernetes.pem /tmp/kubernetes.pem
 RUN cd  /usr/lib/jvm/java-11-openjdk-amd64/bin && \
    keytool -noprompt -import -alias certKubernetes -file /tmp/kubernetes.pem -keystore ../lib/security/cacerts --storepass changeit
 
+RUN chown -R $NOM_USER:$NOM_USER /usr/lib/jvm/java-11-openjdk-amd64
 
 USER $NOM_USER
 
