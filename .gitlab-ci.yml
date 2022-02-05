@@ -3,6 +3,6 @@ include:
     file: 'jobs/utils/build_kaniko.yml'
     ref: master
 
-build_kaniko:
-  tags:
-    - myRunner
+# build_kaniko:
+#   tags:
+#     - myRunner
