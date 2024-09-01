@@ -1,6 +1,6 @@
 # maven
 
-Maven basé sur l'image de base java headless.
+Image Maven basée sur l'image de base java headless.
 
 Peut servir à la fois dans un pipeline Gitlab et en ligne de commande sur poste de devloppement.
 
